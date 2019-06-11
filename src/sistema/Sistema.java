@@ -2,17 +2,13 @@ package sistema;
 import java.util.ArrayList;
 
 public class Sistema{
-
+    
+    private ArrayList<Servico> bancoDeServicos;
     private ArrayList<Pessoa> bancoDeUsuarios;
-    private Pessoa usuario;
     private int indexUsuarioLogado;
 
     public Sistema(ArrayList<Pessoa> bancoUsuarios){
         this.bancoDeUsuarios = bancoUsuarios;
-    }
-
-    public Pessoa getUsuario() {
-        return usuario;
     }
 
     public int getIndexUsuarioLogado() {
@@ -21,10 +17,6 @@ public class Sistema{
 
     public void setIndexUsuarioLogado(int indexUsuarioLogado) {
         this.indexUsuarioLogado = indexUsuarioLogado;
-    }
-
-    public void setUsuario(Pessoa usuario) {
-        this.usuario = usuario;
     }
 
     public void login(String nomeUsuario, String senha) {
@@ -39,10 +31,10 @@ public class Sistema{
 
     public void logoff(String nomeUsuario, String senha) {
 
-        this.bancoDeUsuarios.forEach(usuario -> {
-            if (usuario.getNomeUsuario() == nomeUsuario && usuario.getSenha() == senha) {
-                usuario.setAutenticado(false);
-                this.setIndexUsuarioLogado(this.bancoDeUsuarios.indexOf(usuario));
+        this.bancoDeUsuarios.forEach(u -> {
+            if (u.getNomeUsuario().equals(nomeUsuario) && u.getSenha().equals(senha)) {
+                u.setAutenticado(false);
+                this.setIndexUsuarioLogado(this.bancoDeUsuarios.indexOf(u));
             }
         });
 
@@ -91,5 +83,14 @@ public class Sistema{
             System.out.println("Login usuario: " + usuario.getNomeUsuario() + " Tipo usuario: " + usuario.getClass().getName());
         });
 
+    }
+    
+    public void cadastrarServico(Servico s){
+        if(this.bancoDeUsuarios.get(this.indexUsuarioLogado).isAutenticado()){
+            this.bancoDeServicos.add(s);
+        }
+        else{
+            System.out.println("Usuario não autenticado. ");
+        }
     }
 }
