@@ -11,13 +11,8 @@ public class TelaEntrada extends javax.swing.JFrame {
      * Creates new form TelaEntrada
      */
     public TelaEntrada() {
-        initComponents();
-        Administrador adminMaster = new Administrador("Samuel",
-                "Rua 123", "srfreitas97@", "994790716", "admin", "admin");
-        ArrayList<Pessoa> bancoProv = new ArrayList<>();
-        bancoProv.add(adminMaster);
+        initComponents(); 
         
-        sys = new Sistema(bancoProv);
         //this.setSize(this.getMaximumSize());    
         RedimensionaTelas.redimensiona(this);
     }

@@ -1,5 +1,5 @@
 package sistema;
-public abstract class Pessoa {
+public abstract class Pessoa extends Armazenavel{
     private String nome;
     private String endereco;
     private String email;
@@ -71,5 +71,5 @@ public abstract class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
+    }   
 }
