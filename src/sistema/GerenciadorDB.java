@@ -13,14 +13,13 @@ import java.lang.*;
 public class GerenciadorDB {
 
     private static final GerenciadorDB gdb = new GerenciadorDB();
+
     public enum DB_TYPE {
-     
+
         USERS,
-        SERVICOS           
-    
-}
-   
-   
+        SERVICOS
+
+    }
 
     private GerenciadorDB() {
     }
@@ -29,14 +28,36 @@ public class GerenciadorDB {
         return gdb;
     }
     
-    public ArrayList<Armazenavel> getDB(DB_TYPE tipo) {
+    
+    
+
+    public ArrayList<Pessoa> getUsersDB() {
+       
+        try{            
+            FileInputStream fi = new FileInputStream(new File("UsersDB.txt"));
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            return (ArrayList<Pessoa>) oi.readObject();     
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // ******* TENTATIVA DE FAZER UM GET_DB GENÉRICO   
+    /*public ArrayList<Armazenavel> getDB(DB_TYPE tipo) {
          ArrayList<Armazenavel> db = new ArrayList<>();
          Class<?> classeDB = null;
          String path = "";
         switch(tipo){
             case USERS:
                path = "UsersDB.txt";   
-               classeDB = Pessoa.class;
+               
                break;
             case SERVICOS : 
                 path = "ServicosDB.txt";                
@@ -46,41 +67,45 @@ public class GerenciadorDB {
             FileInputStream fi = new FileInputStream(new File(path));
             ObjectInputStream oi = new ObjectInputStream(fi);
             Class<?> aux = classeDB.getClass();
-            System.out.println(aux.getClass().toString() + classeDB.getClass().toString());
-            //db = (ArrayList<aux>) oi.readObject();
-            return db;
+            System.out.println(aux.getClass().toString() + 
+                                                classeDB.getClass().toString());
+            switch (tipo){
+                case USERS : 
+                   return ((ArrayList<Pessoa>) oi.readObject());
+                case SERVICOS :
+                    return null;
+            }             
+            
 
-        } catch(Exception e) {}
-        /*catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
             System.out.println("Error initializing stream");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }*/
+        }
         return null;
-    }
+    }*/
     /**
      * Created only to startup the data base
      */
-    private static void startUpDB( ArrayList<Object> db, String path){
-        
-        try {
+    private static void startUpDB(ArrayList<?> db, String path) {
+        try {            
             FileOutputStream usersDBFile = new FileOutputStream(new File(path));
-            ObjectOutputStream o = new ObjectOutputStream(usersDBFile);
-            o.writeObject(db);
+            ObjectOutputStream o = new ObjectOutputStream(usersDBFile);            
+            o.writeObject(db);            
             o.close();
-            usersDBFile.close();            
-            
+            usersDBFile.close();
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error initializing stream");
         }
         // TODO Auto-generated catch block
-        
+
     }
 
     public static void main(String[] args) {
@@ -88,13 +113,12 @@ public class GerenciadorDB {
                 "ADM_address", "adm@adm.com", "000000000", "admin", "admin");
         ArrayList<Pessoa> initDB = new ArrayList<>();
         initDB.add(adminMaster);
-       // GerenciadorDB.startUpDB((ArrayList<Object>) ((Object)initDB),"UsersDB.txt");
+        GerenciadorDB.startUpDB(initDB,"UsersDB.txt");
         GerenciadorDB db = GerenciadorDB.getInstanceOf();
-        db.getDB(DB_TYPE.USERS);
-        
-        
-        
-       
+        for(Pessoa p: db.getUsersDB()){
+            System.out.println(p);
+        }
+
     }
 
 }
