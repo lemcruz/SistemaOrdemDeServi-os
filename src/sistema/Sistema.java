@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Sistema{
     
     private ArrayList<TipoServico> bancoDeServicos;
-    private ArrayList<Pessoa> bancoDeUsuarios = new ArrayList();
+    private ArrayList<Pessoa> bancoDeUsuarios ;
     private int indexUsuarioLogado;
 
     public Sistema(ArrayList<Pessoa> bancoUsuarios){
@@ -20,11 +20,12 @@ public class Sistema{
     }
 
     public void login(String nomeUsuario, String senha) {
-
+        
         this.bancoDeUsuarios.forEach(usuario -> {
-            if (usuario.getNomeUsuario() == nomeUsuario && usuario.getSenha() == senha) {
-                usuario.setAutenticado(true);
+            if (usuario.getNomeUsuario().equals(nomeUsuario) && usuario.getSenha().equals(senha)) {
+                usuario.setAutenticado(true);                
                 this.setIndexUsuarioLogado(this.bancoDeUsuarios.indexOf(usuario));
+                
             }
         });
     }
