@@ -12,7 +12,12 @@ public class TelaEntrada extends javax.swing.JFrame {
      */
     public TelaEntrada() {
         initComponents();
-        sys = new Sistema(new ArrayList<Pessoa>());
+        Administrador adminMaster = new Administrador("Samuel",
+                "Rua 123", "srfreitas97@", "994790716", "sarra97", "pass");
+        ArrayList<Pessoa> bancoProv = new ArrayList<>();
+        bancoProv.add(adminMaster);
+        
+        sys = new Sistema(bancoProv);
         //this.setSize(this.getMaximumSize());    
         RedimensionaTelas.redimensiona(this);
     }
@@ -133,6 +138,7 @@ public class TelaEntrada extends javax.swing.JFrame {
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
         // TODO add your handling code here:
         sys.login(loginTxtField.getText(),String.valueOf(senhaTxtField.getPassword()));
+        
     }//GEN-LAST:event_entrarButtonActionPerformed
 
     /**

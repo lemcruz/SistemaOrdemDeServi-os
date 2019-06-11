@@ -9,10 +9,12 @@ package sistema;
  *
  * @author Samuel Freitas
  */
-public class Formatacao extends Servico{
+public class Formatacao extends TipoServico{
 
-    public Formatacao(int codigo, String descricao, boolean ativo, Status status) {
-        super(codigo, descricao, ativo, status);
+    public Formatacao(int codigo, String descricao, boolean ativo) {
+        super(codigo, descricao, ativo);
     }
+
+    
     
 }

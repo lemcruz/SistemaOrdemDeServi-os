@@ -5,10 +5,14 @@
  */
 package sistema;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Samuel Freitas
  */
 public class Pedido {
+    
+    ArrayList<Servico> servicos;
     
 }

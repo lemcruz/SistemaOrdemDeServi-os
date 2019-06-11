@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class Sistema{
     
-    private ArrayList<Servico> bancoDeServicos;
-    private ArrayList<Pessoa> bancoDeUsuarios;
+    private ArrayList<TipoServico> bancoDeServicos;
+    private ArrayList<Pessoa> bancoDeUsuarios = new ArrayList();
     private int indexUsuarioLogado;
 
     public Sistema(ArrayList<Pessoa> bancoUsuarios){
@@ -85,12 +85,22 @@ public class Sistema{
 
     }
     
-    public void cadastrarServico(Servico s){
+    public void cadastrarServico(int codigo,String descricao,boolean ativo){
         if(this.bancoDeUsuarios.get(this.indexUsuarioLogado).isAutenticado()){
-            this.bancoDeServicos.add(s);
+            this.bancoDeServicos.add(new TipoServico(codigo,descricao,ativo));
         }
         else{
             System.out.println("Usuario não autenticado. ");
         }
     }
+    
+//    public void validarServico(Servico s,Servico sUpdate){
+//        for(int i=0;i<this.bancoDeServicos.size();i++){
+//            if(this.bancoDeServicos.get(i) == s){
+//                this.bancoDeServicos.set(i, sUpdate);
+//            }
+//        }
+//    }
+    
+    
 }
