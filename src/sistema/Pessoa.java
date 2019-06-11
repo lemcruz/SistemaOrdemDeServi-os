@@ -1,5 +1,8 @@
 package sistema;
-public abstract class Pessoa extends Armazenavel{
+
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable {
     private String nome;
     private String endereco;
     private String email;
@@ -72,4 +75,10 @@ public abstract class Pessoa extends Armazenavel{
     public void setNome(String nome) {
         this.nome = nome;
     }   
+    @Override
+    public String toString(){
+        return "nome : " + this.nome + "\nUser : " + 
+                this.nomeUsuario;
+    }
+    
 }
