@@ -100,6 +100,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadstrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastroButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="castradoLabel">
       <Properties>

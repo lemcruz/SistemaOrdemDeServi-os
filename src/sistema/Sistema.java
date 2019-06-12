@@ -4,13 +4,20 @@ import java.util.ArrayList;
 public class Sistema{
     
     private ArrayList<TipoServico> bancoDeServicos;
-    private ArrayList<Pessoa> bancoDeUsuarios ;
+    private ArrayList<Pessoa> bancoDeUsuarios;
     private int indexUsuarioLogado;
+    GerenciadorDB dbManager;
 
     public Sistema(ArrayList<Pessoa> bancoUsuarios){
         this.bancoDeUsuarios = bancoUsuarios;
     }
-
+    
+    public Sistema(){
+        dbManager = GerenciadorDB.getInstanceOf();
+        this.bancoDeUsuarios = dbManager.getUsersDB();
+        this.bancoDeServicos = dbManager.getServicosDB();        
+    }
+    
     public int getIndexUsuarioLogado() {
         return indexUsuarioLogado;
     }

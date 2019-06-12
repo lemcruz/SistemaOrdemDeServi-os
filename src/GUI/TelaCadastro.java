@@ -5,17 +5,22 @@
  */
 package GUI;
 
+import sistema.Sistema;
+
 /**
  *
  * @author Aluno
  */
 public class TelaCadastro extends javax.swing.JFrame {
-
+    GerenciandorTelas gerenciadorTelas;
+    Sistema sys;
     /**
      * Creates new form TelaCadastro
      */
     public TelaCadastro() {
         initComponents();
+        gerenciadorTelas = GerenciandorTelas.getInstanceOfGerenciadorTealas();
+        sys = GerenciandorTelas.getInstanceOfSistema();
         RedimensionaTelas.redimensiona(this);
     }
 
@@ -30,9 +35,20 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                windowsClosed(evt);
+            }
+        });
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void windowsClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_windowsClosed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_windowsClosed
 
     /**
      * @param args the command line arguments

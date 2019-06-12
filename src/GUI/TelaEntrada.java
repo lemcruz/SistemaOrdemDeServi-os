@@ -5,13 +5,15 @@ import java.util.* ;
 import sistema.*;
 
 public class TelaEntrada extends javax.swing.JFrame {
-
+    GerenciandorTelas gerenciadorTelas;
     Sistema sys;
     /**
      * Creates new form TelaEntrada
      */
     public TelaEntrada() {
         initComponents(); 
+        gerenciadorTelas = GerenciandorTelas.getInstanceOfGerenciadorTealas();
+        sys = GerenciandorTelas.getInstanceOfSistema();
         
         //this.setSize(this.getMaximumSize());    
         RedimensionaTelas.redimensiona(this);
@@ -65,6 +67,11 @@ public class TelaEntrada extends javax.swing.JFrame {
         });
 
         cadastroButton.setText("Cadstrar");
+        cadastroButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroButtonActionPerformed(evt);
+            }
+        });
 
         castradoLabel.setText("Cadastre-se :");
 
@@ -132,10 +139,14 @@ public class TelaEntrada extends javax.swing.JFrame {
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
         // TODO add your handling code here:
-        sys.login(loginTxtField.getText(),String.valueOf(senhaTxtField.getPassword()));
-        System.out.println("login"+ loginTxtField.getText());
-        System.out.println("Senhha -> "+String.valueOf(senhaTxtField.getPassword()));
+        sys.login(loginTxtField.getText(),String.valueOf(senhaTxtField.getPassword()));       
     }//GEN-LAST:event_entrarButtonActionPerformed
+
+    private void cadastroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroButtonActionPerformed
+        // TODO add your handling code here:
+        gerenciadorTelas.abrirTelaCadastro();        
+        
+    }//GEN-LAST:event_cadastroButtonActionPerformed
 
     /**
      * @param args the command line arguments
