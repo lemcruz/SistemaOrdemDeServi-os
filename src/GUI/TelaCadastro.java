@@ -14,6 +14,7 @@ import sistema.Sistema;
 public class TelaCadastro extends javax.swing.JFrame {
     GerenciandorTelas gerenciadorTelas;
     Sistema sys;
+
     /**
      * Creates new form TelaCadastro
      */
@@ -21,7 +22,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         initComponents();
         gerenciadorTelas = GerenciandorTelas.getInstanceOfGerenciadorTealas();
         sys = GerenciandorTelas.getInstanceOfSistema();
-        RedimensionaTelas.redimensiona(this);
+        
+        
     }
 
     /**
@@ -33,22 +35,224 @@ public class TelaCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        nomeTxtField = new javax.swing.JTextField();
+        enderecoTxtField = new javax.swing.JTextField();
+        emailTxtField = new javax.swing.JTextField();
+        telefoneTxtField = new javax.swing.JTextField();
+        nomeUsuarioTxtField = new javax.swing.JTextField();
+        senhaField = new javax.swing.JPasswordField();
+        senhaLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        cadastrarButton = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        sairButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                windowsClosed(evt);
+
+        nomeTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nomeTxtFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nomeTxtFieldFocusLost(evt);
             }
         });
+        nomeTxtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeTxtFieldActionPerformed(evt);
+            }
+        });
+
+        enderecoTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                enderecoTxtFieldFocusGained(evt);
+            }
+        });
+
+        emailTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailTxtFieldFocusGained(evt);
+            }
+        });
+
+        telefoneTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                telefoneTxtFieldFocusGained(evt);
+            }
+        });
+
+        nomeUsuarioTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nomeUsuarioTxtFieldFocusGained(evt);
+            }
+        });
+
+        senhaField.setText("jPasswordField1");
+        senhaField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                senhaFieldFocusGained(evt);
+            }
+        });
+        senhaField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                senhaFieldKeyPressed(evt);
+            }
+        });
+
+        senhaLabel.setText("Senha :");
+
+        jLabel1.setText("Nome :");
+
+        jLabel2.setText("E-mail:");
+
+        jLabel3.setText("Telefone :");
+
+        jLabel4.setText("Endereco :");
+
+        jLabel5.setText("Nome de usuario :");
+
+        cadastrarButton.setText("Cadastrar");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        sairButton.setText("Sair");
+        sairButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Selecione o tipo do usuário:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(emailTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                                        .addComponent(nomeTxtField, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel1))
+                                .addGap(143, 143, 143)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(senhaLabel)
+                    .addComponent(telefoneTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(enderecoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(senhaField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                        .addComponent(nomeUsuarioTxtField, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(196, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nomeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addGap(3, 3, 3)
+                .addComponent(emailTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(telefoneTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(5, 5, 5)
+                .addComponent(enderecoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nomeUsuarioTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(senhaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastrarButton)
+                    .addComponent(sairButton))
+                .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void windowsClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_windowsClosed
+    private void nomeTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeTxtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeTxtFieldActionPerformed
+
+    private void nomeTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nomeTxtFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeTxtFieldFocusGained
+
+    private void emailTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTxtFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTxtFieldFocusGained
+
+    private void telefoneTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefoneTxtFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefoneTxtFieldFocusGained
+
+    private void enderecoTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_enderecoTxtFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enderecoTxtFieldFocusGained
+
+    private void nomeUsuarioTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nomeUsuarioTxtFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeUsuarioTxtFieldFocusGained
+
+    private void senhaFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_senhaFieldFocusGained
+        // TODO add your handling code here:
+        senhaField.setText("");
+    }//GEN-LAST:event_senhaFieldFocusGained
+
+    private void nomeTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nomeTxtFieldFocusLost
         // TODO add your handling code here:
         
-        
-    }//GEN-LAST:event_windowsClosed
+    }//GEN-LAST:event_nomeTxtFieldFocusLost
+
+    private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_sairButtonActionPerformed
+
+    private void senhaFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_senhaFieldKeyPressed
+        // TODO add your handling code here:
+       if( evt.getKeyCode() == Teclas.ENTER){
+           this.cadastrarButton.doClick();
+       }
+    }//GEN-LAST:event_senhaFieldKeyPressed
 
     /**
      * @param args the command line arguments
@@ -86,5 +290,21 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cadastrarButton;
+    private javax.swing.JTextField emailTxtField;
+    private javax.swing.JTextField enderecoTxtField;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField nomeTxtField;
+    private javax.swing.JTextField nomeUsuarioTxtField;
+    private javax.swing.JButton sairButton;
+    private javax.swing.JPasswordField senhaField;
+    private javax.swing.JLabel senhaLabel;
+    private javax.swing.JTextField telefoneTxtField;
     // End of variables declaration//GEN-END:variables
 }
