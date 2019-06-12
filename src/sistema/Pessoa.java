@@ -9,7 +9,7 @@ public abstract class Pessoa implements Serializable {
     private String telefone;
     private String nomeUsuario;
     private String senha;
-        private boolean autenticado;
+    private boolean autenticado;
 
     public Pessoa(String nome, String endereco, String email, String telefone, String nomeUsuario, String senha) {
         this.nome = nome;
