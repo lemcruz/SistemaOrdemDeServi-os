@@ -14,6 +14,15 @@ public class TipoServico {
     private int codigo; 
     private String descricao;
     private boolean ativo;
+    private double precoCobrado;
+
+    public double getPrecoCobrado() {
+        return precoCobrado;
+    }
+
+    public void setPrecoCobrado(double precoCobrado) {
+        this.precoCobrado = precoCobrado;
+    }
 
     public int getCodigo() {
         return codigo;
@@ -39,10 +48,11 @@ public class TipoServico {
         this.ativo = ativo;
     }
 
-    public TipoServico(int codigo, String descricao, boolean ativo) {
+    public TipoServico(int codigo, String descricao, boolean ativo, double precoCobrado) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.ativo = ativo;
+        this.precoCobrado = precoCobrado;
     }
     
 }

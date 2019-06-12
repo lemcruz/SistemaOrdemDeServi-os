@@ -93,22 +93,41 @@ public class Sistema{
 
     }
     
-    public void cadastrarServico(int codigo,String descricao,boolean ativo){
+    public void cadastrarTipoServico(int codigo,String descricao,boolean ativo){
         if(this.bancoDeUsuarios.get(this.indexUsuarioLogado).isAutenticado()){
-            this.bancoDeServicos.add(new TipoServico(codigo,descricao,ativo));
+            this.bancoDeServicos.add(new TipoServico(codigo,descricao,ativo,-1));
         }
         else{
             System.out.println("Usuario não autenticado. ");
         }
     }
     
-//    public void validarServico(Servico s,Servico sUpdate){
-//        for(int i=0;i<this.bancoDeServicos.size();i++){
-//            if(this.bancoDeServicos.get(i) == s){
-//                this.bancoDeServicos.set(i, sUpdate);
-//            }
-//        }
-//    }
+    public void updateTipoServico(TipoServico s,TipoServico sUpdate){
+        for(int i=0;i<this.bancoDeServicos.size();i++){
+            if(this.bancoDeServicos.get(i).equals(s)){
+                this.bancoDeServicos.set(i,sUpdate);
+            }
+        }    
+    }
     
+    public void validarServico(TipoServico s){
+        for(int i=0;i<this.bancoDeServicos.size();i++){
+            if(this.bancoDeServicos.get(i).equals(s)){
+                s.setAtivo(true);
+                this.bancoDeServicos.set(i,s);
+            }
+        }   
+    }
     
+    public void deleteTipoServico(TipoServico s){
+        this.bancoDeServicos.remove(s);   
+    }
+    
+    public void selecionaServicosPrestados(ArrayList<TipoServico> servicosPrestados,Profissional p){
+        for(int i=0;i<bancoDeUsuarios.size();i++){
+            if(bancoDeUsuarios.get(i).equals(p)){
+                p.setServicosPrestados(servicosPrestados);
+            }
+        }
+    }
 }
