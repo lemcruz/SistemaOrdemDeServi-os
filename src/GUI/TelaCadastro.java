@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.util.ArrayList;
+import sistema.Administrador;
+import sistema.Pessoa;
 import sistema.Sistema;
 
 /**
@@ -22,7 +25,18 @@ public class TelaCadastro extends javax.swing.JFrame {
         initComponents();
         gerenciadorTelas = GerenciandorTelas.getInstanceOfGerenciadorTealas();
         sys = GerenciandorTelas.getInstanceOfSistema();
+        Pessoa p = sys.getUsuarioLogado();
+        this.tipoUsuarioList.removeAll();
+        this.tipoUsuarioList.addItem("Profissional");
+        this.tipoUsuarioList.addItem("Cliente");
         
+        
+        if ( p != null ){
+            if ( p instanceof Administrador){
+                this.tipoUsuarioList.addItem("Administrador");
+            }
+        }
+            
         
     }
 
@@ -48,7 +62,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cadastrarButton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tipoUsuarioList = new javax.swing.JComboBox<>();
         sairButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
@@ -117,8 +131,17 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel5.setText("Nome de usuario :");
 
         cadastrarButton.setText("Cadastrar");
+        cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarButtonActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoUsuarioList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoUsuarioListActionPerformed(evt);
+            }
+        });
 
         sairButton.setText("Sair");
         sairButton.addActionListener(new java.awt.event.ActionListener() {
@@ -152,9 +175,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                                         .addComponent(nomeTxtField, javax.swing.GroupLayout.Alignment.LEADING))
                                     .addComponent(jLabel1))
                                 .addGap(143, 143, 143)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tipoUsuarioList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addComponent(senhaLabel)
                     .addComponent(telefoneTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
@@ -192,7 +215,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addComponent(senhaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cadastrarButton)
                     .addComponent(sairButton))
@@ -201,7 +224,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipoUsuarioList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -254,6 +277,35 @@ public class TelaCadastro extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_senhaFieldKeyPressed
 
+    private void tipoUsuarioListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoUsuarioListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoUsuarioListActionPerformed
+
+    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
+        // TODO add your handling code here:
+        switch ((String) tipoUsuarioList.getSelectedItem()) {
+            case "Profissional":
+                sys.cadastraProfissional(nomeTxtField.getText(),
+                    enderecoTxtField.getText(), emailTxtField.getText(), 
+                    telefoneTxtField.getText(), nomeUsuarioTxtField.getText(),
+                    String.valueOf(senhaField.getPassword()));
+               break;
+            case "Cliente":
+                sys.cadastraCliente(nomeTxtField.getText(),
+                    enderecoTxtField.getText(), emailTxtField.getText(), 
+                    telefoneTxtField.getText(), nomeUsuarioTxtField.getText(),
+                    String.valueOf(senhaField.getPassword()));
+               break;
+            case "Administrador":
+                sys.cadastraAdmin(nomeTxtField.getText(),
+                    enderecoTxtField.getText(), emailTxtField.getText(), 
+                    telefoneTxtField.getText(), nomeUsuarioTxtField.getText(),
+                    String.valueOf(senhaField.getPassword()));
+               break;
+                
+        }
+    }//GEN-LAST:event_cadastrarButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -293,7 +345,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton cadastrarButton;
     private javax.swing.JTextField emailTxtField;
     private javax.swing.JTextField enderecoTxtField;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -306,5 +357,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JPasswordField senhaField;
     private javax.swing.JLabel senhaLabel;
     private javax.swing.JTextField telefoneTxtField;
+    private javax.swing.JComboBox<String> tipoUsuarioList;
     // End of variables declaration//GEN-END:variables
 }

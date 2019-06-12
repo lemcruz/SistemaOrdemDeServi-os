@@ -11,30 +11,49 @@ public class Sistema{
     public Sistema(ArrayList<Pessoa> bancoUsuarios){
         this.bancoDeUsuarios = bancoUsuarios;
     }
-    
+ 
     public Sistema(){
         dbManager = GerenciadorDB.getInstanceOf();
         this.bancoDeUsuarios = dbManager.getUsersDB();
-        this.bancoDeServicos = dbManager.getServicosDB();        
+        this.bancoDeServicos = dbManager.getServicosDB();
+        indexUsuarioLogado = -1;
     }
     
     public int getIndexUsuarioLogado() {
         return indexUsuarioLogado;
     }
+    
+    public Pessoa getUsuarioLogado(){
+        if(this.indexUsuarioLogado != -1)
+            return this.bancoDeUsuarios.get(indexUsuarioLogado);
+        return null;
+    }
 
     public void setIndexUsuarioLogado(int indexUsuarioLogado) {
         this.indexUsuarioLogado = indexUsuarioLogado;
     }
-
-    public void login(String nomeUsuario, String senha) {
-        
-        this.bancoDeUsuarios.forEach(usuario -> {
-            if (usuario.getNomeUsuario().equals(nomeUsuario) && usuario.getSenha().equals(senha)) {
-                usuario.setAutenticado(true);                
-                this.setIndexUsuarioLogado(this.bancoDeUsuarios.indexOf(usuario));
-                
+    public void updateDB(GerenciadorDB.DB_TYPE tipo){
+        switch (tipo){
+            case USERS : 
+                dbManager.updateDB(bancoDeUsuarios, GerenciadorDB.DB_TYPE.USERS);
+                break;
+            case SERVICOS : 
+                dbManager.updateDB(bancoDeServicos, GerenciadorDB.DB_TYPE.SERVICOS);
+                break;
+            case PEDIDOS:
+                break;
+        }
+    }
+    public boolean login(String nomeUsuario, String senha) {
+        boolean logou = false;
+        for (Pessoa u : bancoDeUsuarios){
+            if (u.getNomeUsuario().equals(nomeUsuario) && u.getSenha().equals(senha)) {                
+                u.setAutenticado(true);                
+                this.setIndexUsuarioLogado(this.bancoDeUsuarios.indexOf(u));
+                logou = true;                
             }
-        });
+        }        
+        return logou;
     }
 
     public void logoff(String nomeUsuario, String senha) {
@@ -42,17 +61,19 @@ public class Sistema{
         this.bancoDeUsuarios.forEach(u -> {
             if (u.getNomeUsuario().equals(nomeUsuario) && u.getSenha().equals(senha)) {
                 u.setAutenticado(false);
-                this.setIndexUsuarioLogado(this.bancoDeUsuarios.indexOf(u));
+                this.setIndexUsuarioLogado(-1);
             }
         });
 
     }
-
-    public void cadastraAdmin(String nome, String endereco, String email, String telefone, String nomeUsuario, String senha){
+    
+    public void cadastraAdmin(String nome, String endereco, String email,  
+                            String telefone, String nomeUsuario, String senha){
 
         if(this.bancoDeUsuarios.get(this.indexUsuarioLogado).isAutenticado()){
             if(this.bancoDeUsuarios.get(this.indexUsuarioLogado) instanceof Administrador){
                 this.bancoDeUsuarios.add(new Administrador(nome, endereco, email, telefone, nomeUsuario, senha));
+                this.updateDB(GerenciadorDB.DB_TYPE.USERS);
             }
             else{
                 System.out.println("Usuario não possui as permissoes de administrador. ");
@@ -63,10 +84,13 @@ public class Sistema{
         }
     }
 
-    public void cadastraProfissional(String nome, String endereco, String email, String telefone, String nomeUsuario, String senha){
+    public void cadastraProfissional(String nome, String endereco, String email,
+                            String telefone, String nomeUsuario, String senha){
 
         if(this.bancoDeUsuarios.get(this.indexUsuarioLogado).isAutenticado()){
-                this.bancoDeUsuarios.add(new Profissional(nome, endereco, email, telefone, nomeUsuario, senha));
+                this.bancoDeUsuarios.add(new Profissional(nome, endereco, email,
+                                                telefone, nomeUsuario, senha));
+            this.updateDB(GerenciadorDB.DB_TYPE.USERS);
         }
         else{
             System.out.println("Usuario não autenticado. ");
@@ -74,10 +98,13 @@ public class Sistema{
 
     }
 
-    public void cadastraCliente(String nome, String endereco, String email, String telefone, String nomeUsuario, String senha){
+    public void cadastraCliente(String nome, String endereco, String email, 
+                            String telefone, String nomeUsuario, String senha){
 
         if(this.bancoDeUsuarios.get(this.indexUsuarioLogado).isAutenticado()){
-            this.bancoDeUsuarios.add(new Cliente(nome, endereco, email, telefone, nomeUsuario, senha));
+            this.bancoDeUsuarios.add(new Cliente(nome, endereco, email, 
+                                        telefone, nomeUsuario, senha));
+            this.updateDB(GerenciadorDB.DB_TYPE.USERS);
         }
         else{
             System.out.println("Usuario não autenticado. ");

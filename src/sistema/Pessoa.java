@@ -18,6 +18,7 @@ public abstract class Pessoa implements Serializable {
         this.telefone = telefone;
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
+        this.autenticado = false;
     }
 
     public boolean isAutenticado() {

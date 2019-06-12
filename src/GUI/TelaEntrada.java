@@ -28,6 +28,7 @@ public class TelaEntrada extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogoDeLogin = new javax.swing.JDialog();
         loginTxtField = new javax.swing.JTextField();
         loginLabel = new javax.swing.JLabel();
         senhaTxtField = new javax.swing.JPasswordField();
@@ -35,6 +36,17 @@ public class TelaEntrada extends javax.swing.JFrame {
         entrarButton = new javax.swing.JButton();
         cadastroButton = new javax.swing.JButton();
         castradoLabel = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout dialogoDeLoginLayout = new javax.swing.GroupLayout(dialogoDeLogin.getContentPane());
+        dialogoDeLogin.getContentPane().setLayout(dialogoDeLoginLayout);
+        dialogoDeLoginLayout.setHorizontalGroup(
+            dialogoDeLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        dialogoDeLoginLayout.setVerticalGroup(
+            dialogoDeLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,7 +151,13 @@ public class TelaEntrada extends javax.swing.JFrame {
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
         // TODO add your handling code here:
-        sys.login(loginTxtField.getText(),String.valueOf(senhaTxtField.getPassword()));       
+        if(sys.login(loginTxtField.getText(),String.valueOf(senhaTxtField.getPassword()))){
+            this.dialogoDeLogin.setTitle("Login Sucesso!! ");
+            this.dialogoDeLogin.setVisible(true);
+        }
+        else  this.dialogoDeLogin.setTitle("Login Falha!! ");
+            this.dialogoDeLogin.setVisible(true);
+            
     }//GEN-LAST:event_entrarButtonActionPerformed
 
     private void cadastroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroButtonActionPerformed
@@ -187,6 +205,7 @@ public class TelaEntrada extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastroButton;
     private javax.swing.JLabel castradoLabel;
+    private javax.swing.JDialog dialogoDeLogin;
     private javax.swing.JButton entrarButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JTextField loginTxtField;
